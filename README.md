@@ -10,13 +10,30 @@ One-click server management for Minecraft Bedrock Edition on Linux.
 - Playit.gg integration (friends join without port forwarding)
 - Runs in background via tmux
 
-## Requirements
+## Quick Start
 
+1. Clone this repo:
 ```bash
-sudo pacman -S tmux jq
+git clone https://github.com/kAi-Xin-02/mc-bedrock.git
+cd mc-bedrock
 ```
 
-Download Bedrock server from [minecraft.net](https://www.minecraft.net/en-us/download/server/bedrock) and extract to `server/` folder.
+2. Run setup (installs deps & server):
+```bash
+./scripts/setup.sh
+```
+
+3. Start playing:
+```bash
+./scripts/mc.sh
+```
+
+## Manual Requirements
+
+If you don't use the setup script:
+- Install `tmux` and `jq`
+- Download Bedrock server from [minecraft.net](https://www.minecraft.net/en-us/download/server/bedrock) and extract to `server/` folder.
+
 
 ## Usage
 
