@@ -1,0 +1,4 @@
+server/
+backups/
+playit/
+*.log
