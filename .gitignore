@@ -1,4 +1,7 @@
 server/
 backups/
+autosaves/
 playit/
+mc-ai/
 *.log
+*.bak

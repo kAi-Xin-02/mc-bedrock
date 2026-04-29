@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Detect OS
 if [ -f /etc/os-release ]; then
     . /etc/os-release
     OS=$NAME
@@ -9,7 +8,6 @@ fi
 echo "🚀 Minecraft Bedrock One-Click Installer"
 echo "======================================"
 
-# 1. Install Dependencies
 echo "📦 Installing requirements (tmux, jq, unzip, curl)..."
 if [[ "$ID" == "arch" ]] || [[ "$ID_LIKE" == *"arch"* ]]; then
     sudo pacman -S --noconfirm tmux jq unzip curl
@@ -19,14 +17,12 @@ else
     echo "⚠️  Could not detect package manager. Please manually install: tmux, jq, unzip, curl"
 fi
 
-# 2. Download Bedrock Server
 if [ ! -f "server/bedrock_server" ]; then
     echo "⬇️  Downloading Minecraft Bedrock Server..."
     mkdir -p server
-    
-    # Try to grab the latest version URL
+
     DOWNLOAD_URL=$(curl -s -H "User-Agent: Mozilla/5.0 (X11; Linux x86_64)" https://www.minecraft.net/en-us/download/server/bedrock | grep -o 'https://minecraft.azureedge.net/bin-linux/[^"]*')
-    
+
     if [ -z "$DOWNLOAD_URL" ]; then
         echo "❌ Automated download failed (Minecraft.net often blocks bots)."
         echo "👉 Please download the server manually:"
@@ -48,7 +44,6 @@ else
     echo "✅ Server already exists."
 fi
 
-# 3. Make scripts executable
 chmod +x scripts/*.sh
 
 echo ""

@@ -32,10 +32,11 @@ case $choice in
         if tmux has-session -t $SESSION 2>/dev/null; then
             echo "⚠️ Server already running! Use [2] to open console."
         else
-            echo "🚀 Starting server..."
-            tmux new-session -d -s $SESSION "$SCRIPTS_DIR/start.sh"
+            echo "🚀 Starting server (Preventing sleep mode)..."
+            tmux new-session -d -s $SESSION "systemd-inhibit --what=idle:sleep:handle-lid-switch --who=MinecraftServer --why='Preventing sleep for server' $SCRIPTS_DIR/start.sh"
             sleep 2
-            echo "✅ Server started! Use [2] to open console."
+            echo "✅ Server started! (PC will NOT sleep now)"
+            echo "ℹ️  Use [2] to open console."
         fi
         ;;
     2)
