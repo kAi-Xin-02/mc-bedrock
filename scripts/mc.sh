@@ -5,7 +5,7 @@ SCRIPTS_DIR=~/mc-bedrock/scripts
 
 clear
 echo "╔═══════════════════════════════════════╗"
-echo "║   🎮 MINECRAFT BEDROCK SERVER 🎮      ║"
+echo "║   🎮  kAi - Java + Bedrock Server  🎮 ║"
 echo "╠═══════════════════════════════════════╣"
 echo "║  [1] 🚀 Start Server                  ║"
 echo "║  [2] 🖥️  Open Console                  ║"
@@ -32,11 +32,11 @@ case $choice in
         if tmux has-session -t $SESSION 2>/dev/null; then
             echo "⚠️ Server already running! Use [2] to open console."
         else
-            echo "🚀 Starting server (Preventing sleep mode)..."
+            echo "🚀 Starting kAi server..."
             tmux new-session -d -s $SESSION "systemd-inhibit --what=idle:sleep:handle-lid-switch --who=MinecraftServer --why='Preventing sleep for server' $SCRIPTS_DIR/start.sh"
             sleep 2
-            echo "✅ Server started! (PC will NOT sleep now)"
-            echo "ℹ️  Use [2] to open console."
+            echo "✅ Server started!"
+            echo "ℹ️  Java players: port 25565 | Bedrock players: port 19132"
         fi
         ;;
     2)
@@ -66,15 +66,18 @@ case $choice in
         echo ""
         echo "📊 Server Info:"
         if tmux has-session -t $SESSION 2>/dev/null; then
-            echo "   Status: RUNNING"
+            echo "   Status: 🟢 RUNNING"
         else
-            echo "   Status: STOPPED"
+            echo "   Status: 🔴 STOPPED"
         fi
-        echo "   World folder: ~/mc-bedrock/server/worlds/"
-        echo "   Backups: ~/mc-bedrock/backups/"
-        if [ -d ~/mc-bedrock/backups ]; then
-            echo "   Backup count: $(ls ~/mc-bedrock/backups 2>/dev/null | wc -l)"
+        echo "   Engine:  PaperMC 26.2 (Java + Geyser Crossplay)"
+        echo "   World:   ~/mc-java/world/"
+        echo "   Backups: ~/mc-java/autosaves/"
+        if [ -d ~/mc-java/autosaves ]; then
+            echo "   Backup count: $(ls ~/mc-java/autosaves 2>/dev/null | wc -l)"
         fi
+        echo "   Java port:   25565"
+        echo "   Bedrock port: 19132"
         ;;
     6)
         exec $SCRIPTS_DIR/admin.sh

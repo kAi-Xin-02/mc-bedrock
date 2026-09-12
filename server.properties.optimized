@@ -1,8 +1,8 @@
 server-name=vesper's Bedrock Server
 gamemode=survival
 difficulty=normal
-allow-cheats=false
-max-players=6
+allow-cheats=true
+max-players=10
 online-mode=true
 allow-list=false
 server-port=19132

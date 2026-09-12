@@ -5,3 +5,9 @@ playit/
 mc-ai/
 *.log
 *.bak
+inv_out/
+permanent_backups/
+worlds_backup_20260427/
+read_inventory.py
+give_items.sh
+

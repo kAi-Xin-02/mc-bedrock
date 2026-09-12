@@ -1,0 +1,15 @@
+[Unit]
+Description=kAi Minecraft Server (Java + Bedrock Crossplay)
+After=network.target
+
+[Service]
+Type=forking
+User=kai
+ExecStart=/usr/bin/tmux new-session -d -s mc "systemd-inhibit --what=idle:sleep:handle-lid-switch --who=MinecraftServer --why='Preventing sleep for server' /home/kai/mc-bedrock/scripts/start.sh"
+ExecStop=/usr/bin/tmux send-keys -t mc "stop" Enter
+Restart=on-failure
+RestartSec=15
+TimeoutStopSec=30
+
+[Install]
+WantedBy=multi-user.target
